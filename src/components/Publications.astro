@@ -1,0 +1,196 @@
+---
+interface PubLink {
+  label: string;
+  url: string;
+}
+
+interface Publication {
+  year: string;
+  title: string;
+  authors: string[];
+  venue: string;
+  image?: string;
+  tags?: string[];
+  links?: PubLink[];
+}
+
+const ME = 'Sitong Pan';
+
+const publications: Publication[] = [
+
+  {
+    year: '2026',
+    title: 'TrajectoryCurer: Visual Analysis of Trajectory Data Quality',
+    authors: ['Xiaodan Miao', 'Sitong Pan', 'Shifu Chen', 'Di Weng', 'Yingcai Wu'],
+    venue: 'IEEE PacificVis 2026',
+    image: '/pub/trajectorycurer.png',
+    tags: ['Visualization', 'Trajectory'],
+    links: [
+      { label: 'Paper', url: 'https://dwe.ng/pdf/trajcurer.pdf' },
+    ],
+  },
+  {
+    year: '2025',
+    title: 'TutorUp: What if your students were simulated? Training tutors to address engagement challenges in online learning',
+    authors: ['Sitong Pan', 'Robin Schmucker', 'Bernardo Garcia Bulle Bueno', 'Salome Aguilar Llanes', 'Fernanda Albo Alarcón', 'Hangxiao Zhu', 'Adam Teo', 'Meng Xia'],
+    venue: 'ACM CHI 2025',
+    image: '/pub/tutorup.png',
+    tags: ['HCI', 'Education', 'LLM'],
+    links: [
+      { label: 'Paper', url: 'https://dl.acm.org/doi/pdf/10.1145/3706598.3713589' },
+    ],
+  },
+  {
+    year: '2025',
+    title: 'ReSpark: Leveraging Previous Data Reports as References to Generate New Reports with LLMs',
+    authors: ['Yuan Tian', 'Chuhan Zhang', 'Xiaotong Wang', 'Sitong Pan', 'Weiwei Cui', 'Haidong Zhang', 'Dazhen Deng', 'Yingcai Wu'],
+    venue: 'ACM UIST 2025',
+    image: '/pub/respark.png',
+    tags: ['LLM', 'Data Visualization'],
+    links: [
+      { label: 'Paper', url: 'https://dl.acm.org/doi/pdf/10.1145/3746059.3747644' },
+    ],
+  },
+];
+---
+
+<section id="publications">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">02</span>
+      <h2>Publications</h2>
+    </div>
+
+    <ul class="pub-list">
+      {publications.map((p, i) => (
+        <li class={`pub-item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <div class="pub-thumb">
+            {p.image
+              ? <img src={p.image} alt={p.title} />
+              : <div class="pub-thumb-placeholder" />
+            }
+          </div>
+          <div class="pub-body">
+            <span class="label pub-year">{p.year} · {p.venue}</span>
+            <p class="pub-title">{p.title}</p>
+            <p class="pub-authors">
+              {p.authors.map((a, j) => (
+                <>
+                  {a === ME ? <strong class="pub-me">{a}</strong> : a}
+                  {j < p.authors.length - 1 ? ', ' : ''}
+                </>
+              ))}
+            </p>
+            {p.links && p.links.length > 0 && (
+              <div class="pub-links">
+                {p.links.map(l => (
+                  <a href={l.url} class="pub-link-btn" target="_blank" rel="noopener">{l.label}</a>
+                ))}
+              </div>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pub-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 2.5rem;
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .pub-item:first-child { border-top: 1px solid var(--border); }
+
+  .pub-thumb {
+    width: 180px;
+    height: 120px;
+    flex-shrink: 0;
+  }
+
+  .pub-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .pub-thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+  }
+
+  .pub-year {
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .pub-title {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: var(--fg);
+  }
+
+  .pub-authors {
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+  }
+
+  .pub-me {
+    color: var(--fg);
+    font-weight: 600;
+  }
+
+  .pub-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pub-link-btn {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.2rem 0.6rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .pub-link-btn:hover {
+    border-color: var(--fg);
+    color: var(--fg);
+  }
+
+  @media (max-width: 640px) {
+    .pub-item {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .pub-thumb { width: 100%; height: 140px; }
+  }
+</style>

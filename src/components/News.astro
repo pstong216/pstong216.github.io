@@ -1,0 +1,76 @@
+---
+interface NewsItem {
+  date: string;
+  content: string;
+}
+
+const news: NewsItem[] = [
+  {
+    date: '2026-04',
+    content: 'A paper is accepted to FaccT 26'',
+  },
+  {
+    date: '2025-12',
+    content: 'Another news item. Keep each entry short and specific.',
+  },
+  {
+    date: '2025-09',
+    content: 'A third news item from earlier in the year.',
+  },
+];
+---
+
+<section id="news">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">01</span>
+      <h2>News</h2>
+    </div>
+
+    <ul class="news-list">
+      {news.map((item, i) => (
+        <li class={`news-item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <span class="news-date label">{item.date}</span>
+          <p class="news-content">{item.content}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .news-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .news-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 2rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--border);
+    align-items: baseline;
+  }
+
+  .news-item:first-child { border-top: 1px solid var(--border); }
+
+  .news-date {
+    color: var(--muted);
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  .news-content {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: var(--fg);
+  }
+
+  @media (max-width: 560px) {
+    .news-item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>

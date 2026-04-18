@@ -1,0 +1,110 @@
+---
+---
+
+<section id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">01</span>
+      <h2>About Me</h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-text reveal reveal-delay-1">
+        <p>
+          Replace this with your actual bio. Describe who you are, what you work on,
+          and what motivates your research or practice. Keep it personal and specific —
+          a good bio tells a story, not just a list of credentials.
+        </p>
+        <p>
+          You might mention where you are in your career, what problems excite you,
+          and what distinguishes your approach. Two to three paragraphs is ideal.
+        </p>
+        <p>
+          You can also include a note about collaborations, mentorship, or community
+          involvement if those are important to you.
+        </p>
+      </div>
+
+      <aside class="about-facts reveal reveal-delay-2">
+        <dl>
+          <div class="fact">
+            <dt class="label">Affiliation</dt>
+            <dd>Your University / Lab</dd>
+          </div>
+          <div class="fact">
+            <dt class="label">Research Interests</dt>
+            <dd>Topic One, Topic Two, Topic Three</dd>
+          </div>
+          <div class="fact">
+            <dt class="label">Location</dt>
+            <dd>Your City, Country</dd>
+          </div>
+          <div class="fact">
+            <dt class="label">CV</dt>
+            <dd>
+              <a href="/cv.pdf" class="link" target="_blank" rel="noopener">
+                Download PDF ↗
+              </a>
+            </dd>
+          </div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.85;
+    color: var(--fg);
+  }
+
+  /* Facts sidebar */
+  .about-facts dl {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .fact dt {
+    margin-bottom: 0.35rem;
+  }
+
+  .fact dd {
+    font-size: 0.95rem;
+    color: var(--fg);
+    font-weight: 400;
+  }
+
+  .link {
+    color: var(--accent);
+    transition: opacity 0.2s;
+  }
+  .link:hover { opacity: 0.7; }
+
+  @media (max-width: 820px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .about-facts { order: -1; }
+  }
+</style>

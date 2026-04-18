@@ -1,0 +1,132 @@
+---
+interface Entry {
+  period: string;
+  role: string;
+  org: string;
+  location: string;
+  description: string;
+}
+
+const experience: Entry[] = [
+  {
+    period: '2025.8 — Present',
+    role: 'PhD Student',
+    org: 'University of Minnesota',
+    location: 'Minneapolis, MN',
+    description:
+      '',
+  },
+    {
+    period: '2024.7 — 2024.9',
+    role: 'Research Assistant',
+    org: 'Texas A&M University',
+    location: 'College Station, TX',
+    description:
+      '',
+  },
+  {
+    period: '2021.8 — 2025.6',
+    role: 'Undergraduate Student',
+    org: 'Zhejiang University',
+    location: 'Hangzhou, Zhejiang',
+    description:
+      '',
+  },
+
+];
+---
+
+<section id="experience">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="label">03</span>
+      <h2>Experience</h2>
+    </div>
+
+    <ol class="exp-list">
+      {experience.map((e, i) => (
+        <li class={`exp-item reveal reveal-delay-${Math.min(i + 1, 4)}`}>
+          <div class="exp-left">
+            <span class="exp-period label">{e.period}</span>
+            <span class="exp-loc">{e.location}</span>
+          </div>
+          <div class="exp-right">
+            <p class="exp-role">{e.role}</p>
+            <p class="exp-org">{e.org}</p>
+            <p class="exp-desc">{e.description}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    padding-block: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    counter-increment: none;
+  }
+
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+
+  .exp-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.1rem;
+  }
+
+  .exp-period {
+    color: var(--accent);
+  }
+
+  .exp-loc {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+
+  .exp-role {
+    font-family: var(--f-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-org {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--fg);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+  }
+
+  .exp-desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 60ch;
+  }
+
+  @media (max-width: 640px) {
+    .exp-item {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .exp-left { flex-direction: row; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  }
+</style>
